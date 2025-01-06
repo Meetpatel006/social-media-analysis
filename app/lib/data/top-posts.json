@@ -1,0 +1,71 @@
+{
+  "reels": [
+    {
+      "title": "Product Demo Reel",
+      "likes": 12807,
+      "comments": 2872,
+      "views": 45689,
+      "image": "/images/post1.jpg"
+    },
+    {
+      "title": "Behind the Scenes",
+      "likes": 10945,
+      "comments": 2154,
+      "views": 38453,
+      "image": "/images/post2.jpg"
+    },
+    {
+      "title": "Quick Tips Series",
+      "likes": 9341,
+      "comments": 1836,
+      "views": 32876,
+      "image": "/images/post3.jpg"
+    }
+  ],
+  "carousels": [
+    {
+      "title": "Product Guide Series",
+      "likes": 8807,
+      "comments": 1872,
+      "views": 25689,
+      "image": "/images/post1.jpg"
+    },
+    {
+      "title": "Tutorial Collection",
+      "likes": 7945,
+      "comments": 1654,
+      "views": 22453,
+      "image": "/images/post2.jpg"
+    },
+    {
+      "title": "Feature Comparison",
+      "likes": 7341,
+      "comments": 1436,
+      "views": 19876,
+      "image": "/images/post3.jpg"
+    }
+  ],
+  "static": [
+    {
+      "title": "Winter Collection Launch",
+      "likes": 3807,
+      "comments": 872,
+      "views": 15689,
+      "image": "/images/post1.jpg"
+    },
+    {
+      "title": "New Product Announcement",
+      "likes": 2945,
+      "comments": 654,
+      "views": 12453,
+      "image": "/images/post2.jpg"
+    },
+    {
+      "title": "Customer Success Story",
+      "likes": 2341,
+      "comments": 436,
+      "views": 9876,
+      "image": "/images/post3.jpg"
+    }
+  ]
+} 

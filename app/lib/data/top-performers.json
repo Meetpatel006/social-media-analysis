@@ -1,0 +1,71 @@
+{
+  "reels": [
+    {
+      "title": "Product Feature Showcase",
+      "value": "28.5K",
+      "metric": "Engagement",
+      "growth": "+68%",
+      "isPositive": true
+    },
+    {
+      "title": "Behind the Scenes",
+      "value": "25.2K",
+      "metric": "Views",
+      "growth": "+55%",
+      "isPositive": true
+    },
+    {
+      "title": "Quick Tips Series",
+      "value": "22.8K",
+      "metric": "Shares",
+      "growth": "+62%",
+      "isPositive": true
+    }
+  ],
+  "carousels": [
+    {
+      "title": "Product Guide Series",
+      "value": "15.4K",
+      "metric": "Saves",
+      "growth": "+42%",
+      "isPositive": true
+    },
+    {
+      "title": "Tutorial Collection",
+      "value": "12.8K",
+      "metric": "Engagement",
+      "growth": "+38%",
+      "isPositive": true
+    },
+    {
+      "title": "Feature Comparison",
+      "value": "11.5K",
+      "metric": "Conversions",
+      "growth": "+35%",
+      "isPositive": true
+    }
+  ],
+  "static": [
+    {
+      "title": "Product Launch Post",
+      "value": "8.2K",
+      "metric": "Engagement",
+      "growth": "+28%",
+      "isPositive": true
+    },
+    {
+      "title": "Customer Story",
+      "value": "7.5K",
+      "metric": "Conversions",
+      "growth": "+25%",
+      "isPositive": true
+    },
+    {
+      "title": "Special Offer",
+      "value": "6.8K",
+      "metric": "Clicks",
+      "growth": "+22%",
+      "isPositive": true
+    }
+  ]
+} 

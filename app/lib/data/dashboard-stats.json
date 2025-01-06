@@ -1,0 +1,52 @@
+{
+  "stats": [
+    {
+      "title": "Total Users",
+      "value": "23.4K",
+      "change": "+12%",
+      "isPositive": true
+    },
+    {
+      "title": "Engagement Rate",
+      "value": "4.7%",
+      "change": "+8%",
+      "isPositive": true
+    },
+    {
+      "title": "Conversion Rate",
+      "value": "3.2%",
+      "change": "+18%",
+      "isPositive": true
+    },
+    {
+      "title": "Active Users",
+      "value": "18.2K",
+      "change": "+32%",
+      "isPositive": true
+    },
+    {
+      "title": "Total Revenue",
+      "value": "$45.2K",
+      "change": "+42%",
+      "isPositive": true
+    },
+    {
+      "title": "Growth Rate",
+      "value": "2.1%",
+      "change": "+12%",
+      "isPositive": true
+    },
+    {
+      "title": "Market Reach",
+      "value": "85.5K",
+      "change": "+28%",
+      "isPositive": true
+    },
+    {
+      "title": "Performance",
+      "value": "92%",
+      "change": "+8%",
+      "isPositive": true
+    }
+  ]
+} 

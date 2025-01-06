@@ -1,0 +1,155 @@
+[
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "CORSMiddleware",
+        "importPath": "fastapi.middleware.cors",
+        "description": "fastapi.middleware.cors",
+        "isExtraImport": true,
+        "detail": "fastapi.middleware.cors",
+        "documentation": {}
+    },
+    {
+        "label": "JSONResponse",
+        "importPath": "fastapi.responses",
+        "description": "fastapi.responses",
+        "isExtraImport": true,
+        "detail": "fastapi.responses",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "FlowRequest",
+        "kind": 6,
+        "importPath": "Backend.backend",
+        "description": "Backend.backend",
+        "peekOfCode": "class FlowRequest(BaseModel):\n    message: str\n    tweaks: Optional[Dict[str, Any]] = None\n# Your existing constants\nBASE_API_URL = os.getenv(\"BASE_API_URL\")\nLANGFLOW_ID = os.getenv(\"LANGFLOW_ID\")\nENDPOINT = os.getenv(\"ENDPOINT\")\nAPPLICATION_TOKEN = os.getenv(\"APPLICATION_TOKEN\")\n# Your existing run_flow function\ndef run_flow(message: str,",
+        "detail": "Backend.backend",
+        "documentation": {}
+    },
+    {
+        "label": "run_flow",
+        "kind": 2,
+        "importPath": "Backend.backend",
+        "description": "Backend.backend",
+        "peekOfCode": "def run_flow(message: str,\n    endpoint: str,\n    output_type: str = \"chat\",\n    input_type: str = \"chat\",\n    tweaks: Optional[dict] = None,\n    application_token: Optional[str] = None) -> dict:\n    api_url = f\"{BASE_API_URL}/lf/{LANGFLOW_ID}/api/v1/run/{endpoint}\"\n    payload = {\n        \"input_value\": message,\n        \"output_type\": output_type,",
+        "detail": "Backend.backend",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "Backend.backend",
+        "description": "Backend.backend",
+        "peekOfCode": "app = FastAPI(\n    title=\"Social Media Analysis API\",\n    description=\"API for social media analysis\",\n    version=\"1.0.0\"\n)\n# Configure CORS\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],  # Replace with your Vercel frontend URL in production\n    allow_credentials=True,",
+        "detail": "Backend.backend",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_API_URL",
+        "kind": 5,
+        "importPath": "Backend.backend",
+        "description": "Backend.backend",
+        "peekOfCode": "BASE_API_URL = os.getenv(\"BASE_API_URL\")\nLANGFLOW_ID = os.getenv(\"LANGFLOW_ID\")\nENDPOINT = os.getenv(\"ENDPOINT\")\nAPPLICATION_TOKEN = os.getenv(\"APPLICATION_TOKEN\")\n# Your existing run_flow function\ndef run_flow(message: str,\n    endpoint: str,\n    output_type: str = \"chat\",\n    input_type: str = \"chat\",\n    tweaks: Optional[dict] = None,",
+        "detail": "Backend.backend",
+        "documentation": {}
+    },
+    {
+        "label": "LANGFLOW_ID",
+        "kind": 5,
+        "importPath": "Backend.backend",
+        "description": "Backend.backend",
+        "peekOfCode": "LANGFLOW_ID = os.getenv(\"LANGFLOW_ID\")\nENDPOINT = os.getenv(\"ENDPOINT\")\nAPPLICATION_TOKEN = os.getenv(\"APPLICATION_TOKEN\")\n# Your existing run_flow function\ndef run_flow(message: str,\n    endpoint: str,\n    output_type: str = \"chat\",\n    input_type: str = \"chat\",\n    tweaks: Optional[dict] = None,\n    application_token: Optional[str] = None) -> dict:",
+        "detail": "Backend.backend",
+        "documentation": {}
+    },
+    {
+        "label": "ENDPOINT",
+        "kind": 5,
+        "importPath": "Backend.backend",
+        "description": "Backend.backend",
+        "peekOfCode": "ENDPOINT = os.getenv(\"ENDPOINT\")\nAPPLICATION_TOKEN = os.getenv(\"APPLICATION_TOKEN\")\n# Your existing run_flow function\ndef run_flow(message: str,\n    endpoint: str,\n    output_type: str = \"chat\",\n    input_type: str = \"chat\",\n    tweaks: Optional[dict] = None,\n    application_token: Optional[str] = None) -> dict:\n    api_url = f\"{BASE_API_URL}/lf/{LANGFLOW_ID}/api/v1/run/{endpoint}\"",
+        "detail": "Backend.backend",
+        "documentation": {}
+    },
+    {
+        "label": "APPLICATION_TOKEN",
+        "kind": 5,
+        "importPath": "Backend.backend",
+        "description": "Backend.backend",
+        "peekOfCode": "APPLICATION_TOKEN = os.getenv(\"APPLICATION_TOKEN\")\n# Your existing run_flow function\ndef run_flow(message: str,\n    endpoint: str,\n    output_type: str = \"chat\",\n    input_type: str = \"chat\",\n    tweaks: Optional[dict] = None,\n    application_token: Optional[str] = None) -> dict:\n    api_url = f\"{BASE_API_URL}/lf/{LANGFLOW_ID}/api/v1/run/{endpoint}\"\n    payload = {",
+        "detail": "Backend.backend",
+        "documentation": {}
+    }
+]

@@ -1,0 +1,14 @@
+[
+  { "month": "Jan", "views": 35000, "followers": 28000, "revenue": 25000 },
+  { "month": "Feb", "views": 28000, "followers": 22000, "revenue": 20000 },
+  { "month": "Mar", "views": 32000, "followers": 25000, "revenue": 28000 },
+  { "month": "Apr", "views": 38000, "followers": 30000, "revenue": 32000 },
+  { "month": "May", "views": 40000, "followers": 32000, "revenue": 35000 },
+  { "month": "Jun", "views": 35000, "followers": 28000, "revenue": 30000 },
+  { "month": "Jul", "views": 38000, "followers": 30000, "revenue": 34000 },
+  { "month": "Aug", "views": 36000, "followers": 29000, "revenue": 31000 },
+  { "month": "Sep", "views": 42000, "followers": 33000, "revenue": 36000 },
+  { "month": "Oct", "views": 45000, "followers": 35000, "revenue": 38000 },
+  { "month": "Nov", "views": 48000, "followers": 37000, "revenue": 40000 },
+  { "month": "Dec", "views": 50000, "followers": 39000, "revenue": 42000 }
+]

@@ -1,0 +1,98 @@
+{
+  "reels": {
+    "metrics": [
+      {
+        "title": "Total Revenue",
+        "value": "$485.2K",
+        "change": "+42.3%",
+        "isPositive": true,
+        "iconType": "dollar"
+      },
+      {
+        "title": "Conversion Rate",
+        "value": "12.8%",
+        "change": "+4.5%",
+        "isPositive": true,
+        "iconType": "trending"
+      },
+      {
+        "title": "Active Users",
+        "value": "68.5K",
+        "change": "+28.5%",
+        "isPositive": true,
+        "iconType": "users"
+      },
+      {
+        "title": "Avg. Session",
+        "value": "5m 15s",
+        "change": "+35.5%",
+        "isPositive": true,
+        "iconType": "clock"
+      }
+    ]
+  },
+  "carousels": {
+    "metrics": [
+      {
+        "title": "Total Revenue",
+        "value": "$268.2K",
+        "change": "+24.5%",
+        "isPositive": true,
+        "iconType": "dollar"
+      },
+      {
+        "title": "Conversion Rate",
+        "value": "8.8%",
+        "change": "+3.2%",
+        "isPositive": true,
+        "iconType": "trending"
+      },
+      {
+        "title": "Active Users",
+        "value": "42.4K",
+        "change": "+18.2%",
+        "isPositive": true,
+        "iconType": "users"
+      },
+      {
+        "title": "Avg. Session",
+        "value": "8m 45s",
+        "change": "+42.4%",
+        "isPositive": true,
+        "iconType": "clock"
+      }
+    ]
+  },
+  "static": {
+    "metrics": [
+      {
+        "title": "Total Revenue",
+        "value": "$156.5K",
+        "change": "+15.3%",
+        "isPositive": true,
+        "iconType": "dollar"
+      },
+      {
+        "title": "Conversion Rate",
+        "value": "6.2%",
+        "change": "+2.1%",
+        "isPositive": true,
+        "iconType": "trending"
+      },
+      {
+        "title": "Active Users",
+        "value": "28.4K",
+        "change": "+12.5%",
+        "isPositive": true,
+        "iconType": "users"
+      },
+      {
+        "title": "Avg. Session",
+        "value": "3m 45s",
+        "change": "+15.5%",
+        "isPositive": true,
+        "iconType": "clock"
+      }
+    ]
+  }
+} 

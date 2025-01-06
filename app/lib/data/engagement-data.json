@@ -1,0 +1,44 @@
+{
+  "reels": [
+    { "date": "Jan", "engagement": 125000, "conversion": 62500, "retention": 43750 },
+    { "date": "Feb", "engagement": 145000, "conversion": 72500, "retention": 50750 },
+    { "date": "Mar", "engagement": 180000, "conversion": 90000, "retention": 63000 },
+    { "date": "Apr", "engagement": 225000, "conversion": 112500, "retention": 78750 },
+    { "date": "May", "engagement": 285000, "conversion": 142500, "retention": 99750 },
+    { "date": "Jun", "engagement": 320000, "conversion": 160000, "retention": 112000 },
+    { "date": "Jul", "engagement": 380000, "conversion": 190000, "retention": 133000 },
+    { "date": "Aug", "engagement": 425000, "conversion": 212500, "retention": 148750 },
+    { "date": "Sep", "engagement": 485000, "conversion": 242500, "retention": 169750 },
+    { "date": "Oct", "engagement": 520000, "conversion": 260000, "retention": 182000 },
+    { "date": "Nov", "engagement": 580000, "conversion": 290000, "retention": 203000 },
+    { "date": "Dec", "engagement": 650000, "conversion": 325000, "retention": 227500 }
+  ],
+  "carousels": [
+    { "date": "Jan", "engagement": 85000, "conversion": 51000, "retention": 40800 },
+    { "date": "Feb", "engagement": 92000, "conversion": 55200, "retention": 44160 },
+    { "date": "Mar", "engagement": 98000, "conversion": 58800, "retention": 47040 },
+    { "date": "Apr", "engagement": 105000, "conversion": 63000, "retention": 50400 },
+    { "date": "May", "engagement": 112000, "conversion": 67200, "retention": 53760 },
+    { "date": "Jun", "engagement": 125000, "conversion": 75000, "retention": 60000 },
+    { "date": "Jul", "engagement": 138000, "conversion": 82800, "retention": 66240 },
+    { "date": "Aug", "engagement": 145000, "conversion": 87000, "retention": 69600 },
+    { "date": "Sep", "engagement": 158000, "conversion": 94800, "retention": 75840 },
+    { "date": "Oct", "engagement": 172000, "conversion": 103200, "retention": 82560 },
+    { "date": "Nov", "engagement": 185000, "conversion": 111000, "retention": 88800 },
+    { "date": "Dec", "engagement": 195000, "conversion": 117000, "retention": 93600 }
+  ],
+  "static": [
+    { "date": "Jan", "engagement": 45000, "conversion": 22500, "retention": 15750 },
+    { "date": "Feb", "engagement": 42000, "conversion": 21000, "retention": 14700 },
+    { "date": "Mar", "engagement": 48000, "conversion": 24000, "retention": 16800 },
+    { "date": "Apr", "engagement": 55000, "conversion": 27500, "retention": 19250 },
+    { "date": "May", "engagement": 62000, "conversion": 31000, "retention": 21700 },
+    { "date": "Jun", "engagement": 58000, "conversion": 29000, "retention": 20300 },
+    { "date": "Jul", "engagement": 52000, "conversion": 26000, "retention": 18200 },
+    { "date": "Aug", "engagement": 56000, "conversion": 28000, "retention": 19600 },
+    { "date": "Sep", "engagement": 65000, "conversion": 32500, "retention": 22750 },
+    { "date": "Oct", "engagement": 72000, "conversion": 36000, "retention": 25200 },
+    { "date": "Nov", "engagement": 68000, "conversion": 34000, "retention": 23800 },
+    { "date": "Dec", "engagement": 75000, "conversion": 37500, "retention": 26250 }
+  ]
+}
