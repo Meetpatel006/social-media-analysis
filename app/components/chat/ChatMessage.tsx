@@ -1,4 +1,4 @@
-import { Message } from '../../lib/types/chat'
+import { Message } from '../../lib/api'
 import ReactMarkdown from 'react-markdown'
 import { useState } from 'react'
 

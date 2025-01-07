@@ -1,13 +1,11 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { Message } from '../../lib/types/chat'
+import type { Message } from '@/lib/api'
+import { sendChatMessage } from '@/lib/api'
 import { ChatMessage } from './ChatMessage'
 import { LoadingDots } from '../shared/ui/LoadingDots'
 import { toast } from 'react-hot-toast'
-
-// API configuration with error handling
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 const extractResponseMessage = (data: any): string => {
   // Try to extract message from different possible paths in the response
@@ -63,22 +61,7 @@ export function ChatInterface() {
       setInputMessage('');
       setIsLoading(true);
 
-      const response = await fetch(`${API_BASE_URL}/api/run-flow`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          message: inputMessage,
-          tweaks: null
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Server responded with status: ${response.status}`);
-      }
-
-      const data = await response.json();
+      const data = await sendChatMessage(inputMessage);
       
       // Extract the actual message from the complex response structure
       const responseContent = extractResponseMessage(data);
@@ -95,7 +78,7 @@ export function ChatInterface() {
     } catch (error) {
       console.error('Error:', error);
       const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred';
-      toast.error(errorMessage); // Show error notification
+      toast.error(errorMessage);
 
       const systemErrorMessage: Message = {
         id: Date.now().toString(),
