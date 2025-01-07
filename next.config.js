@@ -3,9 +3,28 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['images.unsplash.com'], // Add any image domains you need
+    domains: ['images.unsplash.com'],
+    unoptimized: false,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**'
+      }
+    ]
   },
-  // Add any other Next.js config options you need
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production'
+  },
+  experimental: {
+    optimizeCss: true,
+    turbo: {
+      loaders: {
+        '.json': ['json']
+      }
+    }
+  },
+  poweredByHeader: false,
+  compress: true
 }
 
 module.exports = nextConfig 

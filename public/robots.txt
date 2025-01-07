@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://social-media-analysis.vercel.app/sitemap.xml 
