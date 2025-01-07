@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { Message, sendChatMessage } from '../../lib/api'
+import { Message, sendChatMessage } from '@/lib/api'
 import { ChatMessage } from './ChatMessage'
 import { LoadingDots } from '../shared/ui/LoadingDots'
 import { toast } from 'react-hot-toast'
