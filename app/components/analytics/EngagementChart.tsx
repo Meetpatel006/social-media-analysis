@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { type EngagementData, fetchEngagementData } from '../../lib/api'
+import { type EngagementData, type ContentType, fetchEngagementData } from '../../lib/api'
 import {
   LineChart,
   Line,
@@ -15,12 +15,12 @@ import {
 } from 'recharts'
 
 function EngagementChart() {
-  const [timeframe, setTimeframe] = useState('Monthly')
+  const [contentType, setContentType] = useState<ContentType>('static')
   
-  const { data, isLoading } = useQuery<EngagementData[], Error>({
-    queryKey: ['engagementData', timeframe],
-    queryFn: fetchEngagementData
-  })
+  const { data, isLoading } = useQuery<EngagementData[]>({
+    queryKey: ['engagementData', contentType],
+    queryFn: () => fetchEngagementData(contentType)
+  })  
 
   if (isLoading) {
     return (
@@ -39,9 +39,12 @@ function EngagementChart() {
         <h2 className="text-xl font-semibold text-white">Engagement Over Time</h2>
         <select 
           className="bg-light-purple text-gray-400 rounded-lg px-3 py-1"
-          value={timeframe}
-          onChange={(e) => setTimeframe(e.target.value)}
+          value={contentType}
+          onChange={(e) => setContentType(e.target.value as ContentType)}
         >
+          <option value="reels">Reels</option>
+          <option value="carousels">Carousels</option>
+          <option value="static">Static Posts</option>
         </select>
       </div>
       
@@ -77,8 +80,15 @@ function EngagementChart() {
             />
             <Line 
               type="monotone" 
-              dataKey="reach" 
+              dataKey="conversion" 
               stroke="#00E396" 
+              strokeWidth={2}
+              dot={false}
+            />
+            <Line 
+              type="monotone" 
+              dataKey="retention" 
+              stroke="#FEB019" 
               strokeWidth={2}
               dot={false}
             />
@@ -89,4 +99,4 @@ function EngagementChart() {
   )
 }
 
-export default EngagementChart 
+export default EngagementChart

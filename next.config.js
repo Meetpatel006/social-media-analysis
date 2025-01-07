@@ -18,8 +18,8 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
     turbo: {
-      loaders: {
-        '.json': ['json']
+      rules: {
+        '*.json': ['json']
       }
     }
   },
