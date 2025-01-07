@@ -1,22 +1,23 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import type { Message } from '@/lib/api'
+import type { Message, ChatResponse } from '@/lib/types/chat'
 import { sendChatMessage } from '@/lib/api'
 import { ChatMessage } from './ChatMessage'
 import { LoadingDots } from '../shared/ui/LoadingDots'
 import { toast } from 'react-hot-toast'
 
-const extractResponseMessage = (data: any): string => {
-  // Try to extract message from different possible paths in the response
-  if (data.outputs?.[0]?.outputs?.[0]?.artifacts?.message) {
-    return data.outputs[0].outputs[0].artifacts.message;
+const extractResponseMessage = (data: ChatResponse): string => {
+  const firstOutput = data.outputs?.[0]?.outputs?.[0];
+  
+  if (firstOutput?.artifacts?.message) {
+    return firstOutput.artifacts.message;
   }
-  if (data.outputs?.[0]?.outputs?.[0]?.results?.message?.text) {
-    return data.outputs[0].outputs[0].results.message.text;
+  if (firstOutput?.results?.message?.text) {
+    return firstOutput.results.message.text;
   }
-  // Fallback to stringifying the entire response if we can't find the message
-  return typeof data === 'object' ? JSON.stringify(data, null, 2) : String(data);
+  
+  throw new Error('Unable to extract message from response');
 };
 
 export function ChatInterface() {
@@ -24,6 +25,7 @@ export function ChatInterface() {
   const [isLoading, setIsLoading] = useState(false)
   const [inputMessage, setInputMessage] = useState('')
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const [error, setError] = useState<string | null>(null)
 
   // Initial greeting message
   useEffect(() => {
@@ -46,24 +48,23 @@ export function ChatInterface() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!inputMessage.trim()) return;
+    if (!inputMessage.trim() || isLoading) return;
 
     const userMessage: Message = {
       id: Date.now().toString(),
       type: 'user',
-      content: inputMessage,
+      content: inputMessage.trim(),
       sender: 'user',
       timestamp: new Date()
     };
 
-    try {
-      setMessages(prev => [...prev, userMessage]);
-      setInputMessage('');
-      setIsLoading(true);
+    setError(null);
+    setMessages((prev: Message[]) => [...prev, userMessage]);
+    setInputMessage('');
+    setIsLoading(true);
 
-      const data = await sendChatMessage(inputMessage);
-      
-      // Extract the actual message from the complex response structure
+    try {
+      const data = await sendChatMessage(inputMessage.trim());
       const responseContent = extractResponseMessage(data);
 
       const assistantMessage: Message = {
@@ -74,10 +75,11 @@ export function ChatInterface() {
         timestamp: new Date()
       };
 
-      setMessages(prev => [...prev, assistantMessage]);
+      setMessages((prev: Message[]) => [...prev, assistantMessage]);
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Chat Error:', error);
       const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred';
+      setError(errorMessage);
       toast.error(errorMessage);
 
       const systemErrorMessage: Message = {
@@ -87,7 +89,7 @@ export function ChatInterface() {
         sender: 'system',
         timestamp: new Date()
       };
-      setMessages(prev => [...prev, systemErrorMessage]);
+      setMessages((prev: Message[]) => [...prev, systemErrorMessage]);
     } finally {
       setIsLoading(false);
     }
@@ -103,7 +105,7 @@ export function ChatInterface() {
 
       {/* Chat Messages */}
       <div className="flex-1 overflow-y-auto p-6 space-y-4">
-        {messages.map(message => (
+        {messages.map((message: Message) => (
           <ChatMessage key={message.id} message={message} />
         ))}
         
@@ -114,6 +116,15 @@ export function ChatInterface() {
             </div>
           </div>
         )}
+        
+        {error && (
+          <div className="flex justify-center">
+            <div className="bg-red-100 text-red-700 px-4 py-2 rounded-lg text-sm">
+              {error}
+            </div>
+          </div>
+        )}
+        
         <div ref={messagesEndRef} />
       </div>
 
