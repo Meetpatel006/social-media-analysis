@@ -5,7 +5,7 @@ import { type ContentType } from '../../lib/api'
 import { AnalyticsOverview } from './AnalyticsOverview'
 import { EngagementTrends } from './charts/EngagementTrends'
 import { TopPerformers } from './TopPerformers'
-import { TopPosts } from './TopPosts'
+import TopPosts from './TopPosts'
 
 export function Analytics() {
   const [selectedContentType, setSelectedContentType] = useState<ContentType>('static')

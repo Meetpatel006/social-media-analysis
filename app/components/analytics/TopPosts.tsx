@@ -8,7 +8,7 @@ interface TopPostsProps {
   selectedContentType: ContentType
 }
 
-export function TopPosts({ selectedContentType }: TopPostsProps) {
+export default function TopPosts({ selectedContentType }: TopPostsProps) {
   const { data: topPosts, isLoading } = useQuery({
     queryKey: ['topPosts', selectedContentType],
     queryFn: () => fetchTopPosts(selectedContentType)
