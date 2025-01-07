@@ -25,10 +25,11 @@ interface EngagementTrendsProps {
 }
 
 export function EngagementTrends({ selectedContentType, setSelectedContentType }: EngagementTrendsProps) {
-  const { data: engagementData, isLoading } = useQuery({
+  const { data: engagementData, isLoading } = useQuery<EngagementData[]>({
     queryKey: ['engagementTrends', selectedContentType],
-    queryFn: async () => {
-      return fetchEngagementData(selectedContentType)
+    queryFn: ({ queryKey }) => {
+      const [, contentType] = queryKey as [string, ContentType]
+      return fetchEngagementData(contentType)
     }
   })
 
