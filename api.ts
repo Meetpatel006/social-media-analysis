@@ -1,6 +1,10 @@
+import { Message, ChatResponse } from './types/chat'
+
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://social-media-analysis-backend.vercel.app'
 
 // API Types
+export type { Message, ChatResponse }
+
 export interface DashboardStats {
   stats: {
     title: string
@@ -84,29 +88,6 @@ export interface TopPostsByType {
   reels: TopPost[]
   carousels: TopPost[]
   static: TopPost[]
-}
-
-export interface Message {
-  id: string
-  type: 'user' | 'assistant' | 'error'
-  content: string
-  sender: 'user' | 'assistant' | 'system'
-  timestamp: Date
-}
-
-export interface ChatResponse {
-  outputs: Array<{
-    outputs: Array<{
-      artifacts?: {
-        message: string
-      }
-      results?: {
-        message: {
-          text: string
-        }
-      }
-    }>
-  }>
 }
 
 // API Functions
