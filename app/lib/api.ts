@@ -1,11 +1,10 @@
-import dashboardStatsJson from './data/dashboard-stats.json'
-import insightsJson from './data/insights.json'
-import analyticsOverviewJson from './data/analytics-overview.json'
-import engagementDataJson from './data/engagement-data.json'
-import topPerformersJson from './data/top-performers.json'
-import topPostsJson from './data/top-posts.json'
+import { Message, ChatResponse } from './types/chat'
 
-// API Types
+const BACKEND_URL = 'https://social-media-analysis-backend.vercel.app'
+
+// Re-export chat types
+export type { Message, ChatResponse }
+
 export interface DashboardStats {
   stats: {
     title: string
@@ -93,68 +92,79 @@ export interface TopPostsByType {
 
 // API Functions
 export async function fetchDashboardStats(): Promise<DashboardStats> {
-  await new Promise(resolve => setTimeout(resolve, 1000))
-  return dashboardStatsJson
+  const response = await fetch(`${BACKEND_URL}/api/dashboard/stats`)
+  if (!response.ok) {
+    throw new Error('Failed to fetch dashboard stats')
+  }
+  return response.json()
 }
 
 export async function fetchInsights(): Promise<InsightData[]> {
-  await new Promise(resolve => setTimeout(resolve, 1000))
-  return insightsJson
+  const response = await fetch(`${BACKEND_URL}/api/insights`)
+  if (!response.ok) {
+    throw new Error('Failed to fetch insights')
+  }
+  return response.json()
 }
 
 export async function fetchPostActivity(): Promise<PostActivity[]> {
-  await new Promise(resolve => setTimeout(resolve, 1000))
-  return [
-    {
-      id: '1',
-      title: 'Winter Collection',
-      status: 'Active',
-      likes: 3807,
-      impressions: 5689,
-      comments: 8707,
-      image: '/images/post1.jpg'
-    },
-    {
-      id: '2',
-      title: 'New Arrival',
-      status: 'Active',
-      likes: 3807,
-      impressions: 5689,
-      comments: 8707,
-      image: '/images/post2.jpg'
-    },
-    {
-      id: '3',
-      title: 'Avail 35% off',
-      status: 'Active',
-      likes: 1807,
-      impressions: 2689,
-      comments: 8707,
-      image: '/images/post3.jpg'
-    }
-  ]
+  const response = await fetch(`${BACKEND_URL}/api/posts/activity`)
+  if (!response.ok) {
+    throw new Error('Failed to fetch post activity')
+  }
+  return response.json()
 }
 
 export async function fetchAnalyticsOverview(contentType: ContentType = 'static'): Promise<AnalyticsOverview> {
-  await new Promise(resolve => setTimeout(resolve, 1000))
-  const data = analyticsOverviewJson as AnalyticsOverviewByType
-  return data[contentType]
+  const response = await fetch(`${BACKEND_URL}/api/analytics/overview?type=${contentType}`)
+  if (!response.ok) {
+    throw new Error('Failed to fetch analytics overview')
+  }
+  return response.json()
 }
 
 export async function fetchEngagementData(contentType: ContentType = 'static'): Promise<EngagementData[]> {
-  await new Promise(resolve => setTimeout(resolve, 1000))
-  const data = engagementDataJson as EngagementDataByType
-  return data[contentType]
+  const response = await fetch(`${BACKEND_URL}/api/analytics/engagement?type=${contentType}`)
+  if (!response.ok) {
+    throw new Error('Failed to fetch engagement data')
+  }
+  return response.json()
 }
 
 export async function fetchTopPosts(contentType: ContentType = 'static'): Promise<TopPost[]> {
-  await new Promise(resolve => setTimeout(resolve, 1000))
-  const data = topPostsJson as TopPostsByType
-  return data[contentType]
+  const response = await fetch(`${BACKEND_URL}/api/posts/top?type=${contentType}`)
+  if (!response.ok) {
+    throw new Error('Failed to fetch top posts')
+  }
+  return response.json()
 }
 
 export async function fetchTopPerformers(contentType: ContentType = 'static'): Promise<TopPerformer[]> {
-  await new Promise(resolve => setTimeout(resolve, 1000))
-  const data = topPerformersJson as TopPerformersByType
-  return data[contentType]
+  const response = await fetch(`${BACKEND_URL}/api/analytics/top-performers?type=${contentType}`)
+  if (!response.ok) {
+    throw new Error('Failed to fetch top performers')
+  }
+  return response.json()
+}
+
+export async function sendChatMessage(message: string): Promise<ChatResponse> {
+  const response = await fetch(`${BACKEND_URL}/api/chat/send`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      message,
+      context: {
+        type: 'social_media_analysis'
+      }
+    }),
+  })
+  
+  if (!response.ok) {
+    const error = await response.text()
+    throw new Error(error || 'Failed to send chat message')
+  }
+  
+  return response.json()
 } 
