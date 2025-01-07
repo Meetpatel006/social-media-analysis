@@ -17,6 +17,7 @@ export interface ChatResponse {
           text: string
         }
       }
+      error?: string
     }>
   }>
 } 
