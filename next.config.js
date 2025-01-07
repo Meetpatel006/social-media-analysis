@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['images.unsplash.com'],
+    domains: ['images.unsplash.com', 'social-media-analysis-backend.vercel.app'],
     unoptimized: false,
     remotePatterns: [
       {
@@ -22,6 +22,14 @@ const nextConfig = {
         '*.json': ['json']
       }
     }
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'https://social-media-analysis-backend.vercel.app/:path*'
+      }
+    ]
   },
   poweredByHeader: false,
   compress: true
