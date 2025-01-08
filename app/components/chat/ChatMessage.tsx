@@ -1,76 +1,61 @@
-import { Message } from '../../lib/api'
+import { Message } from '../../lib/types/chat'
 import ReactMarkdown from 'react-markdown'
-import { useState } from 'react'
 
 interface ChatMessageProps {
   message: Message
 }
 
-export const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
-  const isUser = message.sender === 'user';
-  const [isExpanded, setIsExpanded] = useState(true);
-  
-  const formatMetric = (text: string) => {
-    const matches = text.match(/(.*?): (.*?) \((.*?)\)/);
-    if (!matches) return text;
-    
-    const [_, metric, value, change] = matches;
-    const isPositive = change.includes('↑');
-    
-    return (
-      <div className="flex justify-between items-center py-1">
-        <span className="font-medium">{metric}</span>
-        <div>
-          <span className="font-bold">{value}</span>
-          <span className={`ml-2 ${isPositive ? 'text-green-400' : 'text-red-400'}`}>
-            {change}
-          </span>
-        </div>
-      </div>
-    );
-  };
+export function ChatMessage({ message }: ChatMessageProps) {
+  const isUser = message.sender === 'user'
+  const isError = message.type === 'error'
 
-  const renderContent = () => {
-    if (isUser) {
-      return <p className="whitespace-pre-wrap break-words">{message.content}</p>;
-    }
-
-    return (
-      <div className="prose prose-invert max-w-none">
-        <ReactMarkdown
-          components={{
-            h1: ({ children }) => <h1 className="text-xl font-bold mb-3 mt-2">{children}</h1>,
-            h2: ({ children }) => <h2 className="text-lg font-semibold mb-2 mt-4">{children}</h2>,
-            ul: ({ children }) => <ul className="space-y-1 my-2">{children}</ul>,
-            li: ({ children }) => {
-              const content = children?.toString() ?? '';
-              if (content.includes(':') && (content.includes('↑') || content.includes('↓'))) {
-                return <li className="list-none">{formatMetric(content)}</li>;
-              }
-              return <li className="list-disc ml-4">{children}</li>;
-            },
-            p: ({ children }) => <p className="my-2">{children}</p>,
-          }}
-        >
-          {message.content}
-        </ReactMarkdown>
-      </div>
-    );
-  };
+  // Format the content: replace single underscores with newlines and double underscores with bold
+  const formatContent = (content: string) => {
+    return content
+      .replace(/_\s/g, '\n\n') // Replace underscore+space with double newline
+      .replace(/_$/gm, '\n\n') // Replace underscore at end of line with double newline
+      .replace(/\*\*/g, '__') // Replace ** with __ for bold
+      .replace(/(?<!_)_(?!_)/g, '') // Remove single underscores that aren't part of __
+      .trim()
+  }
 
   return (
     <div className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}>
       <div
-        className={`max-w-[85%] rounded-lg p-4 ${
+        className={`max-w-[80%] rounded-lg p-4 ${
           isUser
             ? 'bg-blue-500 text-white'
-            : message.type === 'error'
+            : isError
             ? 'bg-red-100 text-red-700'
-            : 'bg-light-purple text-white'
+            : 'bg-light-purple text-gray-100'
         }`}
       >
-        {renderContent()}
+        <ReactMarkdown
+          className="prose prose-invert max-w-none"
+          components={{
+            h1: ({ children }) => <h1 className="text-2xl font-bold mb-4">{children}</h1>,
+            h2: ({ children }) => <h2 className="text-xl font-bold mb-3">{children}</h2>,
+            h3: ({ children }) => <h3 className="text-lg font-bold mb-2">{children}</h3>,
+            p: ({ children }) => <p className="mb-4 whitespace-pre-line">{children}</p>,
+            ul: ({ children }) => <ul className="list-disc ml-6 mb-4">{children}</ul>,
+            ol: ({ children }) => <ol className="list-decimal ml-6 mb-4">{children}</ol>,
+            li: ({ children }) => <li className="mb-2">{children}</li>,
+            strong: ({ children }) => <strong className="font-bold text-blue-200">{children}</strong>,
+            em: ({ children }) => <em className="italic text-gray-300">{children}</em>,
+            blockquote: ({ children }) => (
+              <blockquote className="border-l-4 border-blue-300 pl-4 my-4">{children}</blockquote>
+            ),
+            code: ({ children }) => (
+              <code className="bg-gray-800 rounded px-1 py-0.5 text-sm">{children}</code>
+            ),
+            pre: ({ children }) => (
+              <pre className="bg-gray-800 rounded p-4 my-4 overflow-x-auto">{children}</pre>
+            ),
+          }}
+        >
+          {formatContent(message.content)}
+        </ReactMarkdown>
       </div>
     </div>
-  );
-}; 
+  )
+} 
