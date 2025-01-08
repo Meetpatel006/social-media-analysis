@@ -1,14 +1,12 @@
-import { Message, ChatResponse } from './types/chat'
+import { Message, LangFlowResponse } from './types/chat'
 import mockDashboardStats from '@/lib/data/dashboard-stats.json'
 import mockInsights from '@/lib/data/insights.json'
 import mockAnalyticsOverview from '@/lib/data/analytics-overview.json'
 import mockEngagementData from '@/lib/data/engagement-data.json'
 import mockTopPosts from '@/lib/data/top-posts.json'
 
-const BACKEND_URL = 'https://social-media-analysis-backend.vercel.app'
-
 // Re-export chat types
-export type { Message, ChatResponse }
+export type { Message, LangFlowResponse }
 
 export interface DashboardStats {
   stats: {
@@ -97,47 +95,14 @@ export interface TopPostsByType {
 
 // API Functions
 export async function fetchDashboardStats(): Promise<DashboardStats> {
-  try {
-    // First try to fetch from the backend
-    const response = await fetch(`${BACKEND_URL}/api/dashboard/stats`)
-    if (response.ok) {
-      return response.json()
-    }
-  } catch (error) {
-    console.warn('Failed to fetch from backend, using mock data:', error)
-  }
-
-  // Fallback to mock data from JSON file
   return mockDashboardStats
 }
 
 export async function fetchInsights(): Promise<InsightData[]> {
-  try {
-    // First try to fetch from the backend
-    const response = await fetch(`${BACKEND_URL}/api/insights`)
-    if (response.ok) {
-      return response.json()
-    }
-  } catch (error) {
-    console.warn('Failed to fetch insights from backend, using mock data:', error)
-  }
-
-  // Fallback to mock data from JSON file
   return mockInsights
 }
 
 export async function fetchPostActivity(): Promise<PostActivity[]> {
-  try {
-    // First try to fetch from the backend
-    const response = await fetch(`${BACKEND_URL}/api/posts/activity`)
-    if (response.ok) {
-      return response.json()
-    }
-  } catch (error) {
-    console.warn('Failed to fetch post activity from backend, using mock data:', error)
-  }
-
-  // Fallback to mock data
   return [
     {
       id: '1',
@@ -170,69 +135,32 @@ export async function fetchPostActivity(): Promise<PostActivity[]> {
 }
 
 export async function fetchAnalyticsOverview(contentType: ContentType = 'static'): Promise<AnalyticsOverview> {
-  try {
-    // First try to fetch from the backend
-    const response = await fetch(`${BACKEND_URL}/api/analytics/overview?type=${contentType}`)
-    if (response.ok) {
-      return response.json()
-    }
-  } catch (error) {
-    console.warn('Failed to fetch analytics overview from backend, using mock data:', error)
-  }
-
-  // Fallback to mock data from JSON file
   return mockAnalyticsOverview[contentType]
 }
 
 export async function fetchEngagementData(contentType: ContentType = 'static'): Promise<EngagementData[]> {
-  try {
-    // First try to fetch from the backend
-    const response = await fetch(`${BACKEND_URL}/api/analytics/engagement?type=${contentType}`)
-    if (response.ok) {
-      return response.json()
-    }
-  } catch (error) {
-    console.warn('Failed to fetch engagement data from backend, using mock data:', error)
-  }
-
-  // Fallback to mock data from JSON file
   return mockEngagementData[contentType]
 }
 
 export async function fetchTopPosts(contentType: ContentType = 'static'): Promise<TopPost[]> {
-  try {
-    // First try to fetch from the backend
-    const response = await fetch(`${BACKEND_URL}/api/posts/top?type=${contentType}`)
-    if (response.ok) {
-      return response.json()
-    }
-  } catch (error) {
-    console.warn('Failed to fetch top posts from backend, using mock data:', error)
-  }
-
-  // Fallback to mock data from JSON file
   return mockTopPosts[contentType]
 }
 
 export async function fetchTopPerformers(contentType: ContentType = 'static'): Promise<TopPerformer[]> {
-  const response = await fetch(`${BACKEND_URL}/api/analytics/top-performers?type=${contentType}`)
-  if (!response.ok) {
-    throw new Error('Failed to fetch top performers')
-  }
-  return response.json()
+  throw new Error('Failed to fetch top performers')
 }
 
-export async function sendChatMessage(message: string): Promise<ChatResponse> {
+export async function sendChatMessage(message: string): Promise<LangFlowResponse> {
   try {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 30000);
 
-    const response = await fetch(`${BACKEND_URL}/api/run-flow`, {
+    const response = await fetch('http://127.0.0.1:8000/api/analyze', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Origin': 'https://social-media-analysis-jade.vercel.app'
+        'Origin': 'http://127.0.0.1:3000'
       },
       credentials: 'omit',
       body: JSON.stringify({
