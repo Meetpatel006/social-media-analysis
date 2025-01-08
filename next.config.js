@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['images.unsplash.com', 'social-media-analysis-backend.vercel.app'],
+    domains: ['images.unsplash.com', 'social-media-analysis-gold.vercel.app', 'temp-1hgm.onrender.com'],
     unoptimized: false,
     remotePatterns: [
       {
@@ -42,7 +42,7 @@ const nextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              "connect-src 'self' http://127.0.0.1:8000 http://localhost:8000 https://api.langflow.astra.datastax.com https://temp-1hgm.onrender.com ws: wss: http: https:",
+              "connect-src 'self' https://social-media-analysis-gold.vercel.app https://temp-1hgm.onrender.com ws: wss: http: https:",
               "script-src 'self' 'unsafe-eval' 'unsafe-inline'",
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: https:",
