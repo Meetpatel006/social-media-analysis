@@ -6,18 +6,17 @@ export interface Message {
   timestamp: Date
 }
 
-export interface ChatResponse {
-  outputs: Array<{
-    outputs: Array<{
-      artifacts?: {
-        message: string
-      }
-      results?: {
-        message: {
-          text: string
-        }
-      }
-      error?: string
-    }>
-  }>
+export interface LangFlowResponse {
+  response: {
+    message: string
+    type: string
+    data?: any
+  }
+  status: number
+}
+
+export interface WebSocketMessage {
+  type: 'requestId' | 'response' | 'error'
+  requestId?: string
+  message?: string
 } 
